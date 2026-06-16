@@ -1,0 +1,68 @@
+# Dependency directories
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing and coverage
+/coverage
+/.nyc_output
+
+# Build and production outputs
+/.next/
+/out/
+/build
+/dist
+/.turbo
+/.contentlayer
+
+# Debug and log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+next-dev*.log
+next-dev*.err.log
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDEs and Editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# Environment variables and secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+*.pem
+*.key
+
+# Cache files and typescript build info
+*.tsbuildinfo
+next-env.d.ts
+.eslintcache
+.prettiercache
+.cache/
