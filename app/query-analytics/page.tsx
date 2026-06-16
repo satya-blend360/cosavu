@@ -631,7 +631,7 @@ export default function QueryAnalyticsPage() {
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
             <Card className="rounded-sm border-border/60 shadow-sm">
-              <CardHeader className="gap-4 md:grid-cols-[1fr_auto]">
+              <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <Badge className="w-fit rounded-sm" variant="secondary">
                     {COSAVU_DATA_API_BASE_URL.replace(/^https?:\/\//, "")}
@@ -723,26 +723,29 @@ export default function QueryAnalyticsPage() {
 
             <div className="grid gap-4 xl:grid-cols-[1.25fr_0.75fr]">
               <Card className="rounded-sm border-border/60 shadow-sm">
-                <CardHeader className="gap-4 lg:grid-cols-[1fr_auto]">
+                <CardHeader className="flex flex-col gap-4">
                   <div>
                     <CardTitle>Query stream</CardTitle>
                     <CardDescription>
                       Search requests sent through Cosavu retrieval.
                     </CardDescription>
                   </div>
-                  <CardAction className="col-span-full col-start-1 row-start-2 flex w-full flex-col gap-2 justify-self-stretch lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:w-auto lg:justify-self-end">
-                    <div className="flex w-full flex-col gap-2 sm:flex-row">
-                      <div className="relative w-full sm:w-72">
-                        <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
-                        <Input
-                          className="h-9 rounded-sm pl-9"
-                          placeholder="Search queries..."
-                          value={querySearch}
-                          onChange={(event) =>
-                            setQuerySearch(event.target.value)
-                          }
-                        />
-                      </div>
+                  <div className="flex w-full flex-col gap-3">
+                    {/* Row 1: Search queries */}
+                    <div className="relative w-full max-w-md">
+                      <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+                      <Input
+                        className="h-9 rounded-sm pl-9"
+                        placeholder="Search queries..."
+                        value={querySearch}
+                        onChange={(event) =>
+                          setQuerySearch(event.target.value)
+                        }
+                      />
+                    </div>
+
+                    {/* Row 2: Select filters */}
+                    <div className="flex flex-wrap gap-2">
                       <Select
                         value={collectionFilter}
                         onValueChange={setCollectionFilter}
@@ -782,24 +785,28 @@ export default function QueryAnalyticsPage() {
                         </SelectContent>
                       </Select>
                     </div>
-                    <Tabs
-                      value={systemFilter}
-                      onValueChange={setSystemFilter}
-                      className="w-full"
-                    >
-                      <TabsList className="w-full rounded-sm [&_[data-slot=tabs-trigger]]:rounded-sm">
-                        <TabsTrigger className="rounded-sm" value="all">
-                          All
-                        </TabsTrigger>
-                        <TabsTrigger className="rounded-sm" value="car-0">
-                          CAR-0
-                        </TabsTrigger>
-                        <TabsTrigger className="rounded-sm" value="car-1">
-                          CAR-1
-                        </TabsTrigger>
-                      </TabsList>
-                    </Tabs>
-                  </CardAction>
+
+                    {/* Row 3: Tabs filter */}
+                    <div className="w-full max-w-xs">
+                      <Tabs
+                        value={systemFilter}
+                        onValueChange={setSystemFilter}
+                        className="w-full"
+                      >
+                        <TabsList className="w-full rounded-sm [&_[data-slot=tabs-trigger]]:rounded-sm">
+                          <TabsTrigger className="rounded-sm" value="all">
+                            All
+                          </TabsTrigger>
+                          <TabsTrigger className="rounded-sm" value="car-0">
+                            CAR-0
+                          </TabsTrigger>
+                          <TabsTrigger className="rounded-sm" value="car-1">
+                            CAR-1
+                          </TabsTrigger>
+                        </TabsList>
+                      </Tabs>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -1119,7 +1126,7 @@ export default function QueryAnalyticsPage() {
             </div>
 
             <Card className="rounded-sm border-border/60 shadow-sm">
-              <CardHeader className="gap-4 lg:grid-cols-[1fr_auto]">
+              <CardHeader className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-start">
                 <div>
                   <CardTitle>Top collections</CardTitle>
                   <CardDescription>

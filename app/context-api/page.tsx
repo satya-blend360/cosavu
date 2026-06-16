@@ -535,7 +535,7 @@ export default function ContextApiPage() {
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
             <Card className="rounded-sm border-border/60 shadow-sm">
-              <CardHeader className="gap-4 md:grid-cols-[1fr_auto]">
+              <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <Badge className="w-fit rounded-sm" variant="secondary">
                     {COSAVU_STAN_API_BASE_URL.replace(/^https?:\/\//, "")}
@@ -635,15 +635,16 @@ export default function ContextApiPage() {
 
             <div className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
               <Card className="rounded-sm border-border/60 shadow-sm">
-                <CardHeader className="gap-4">
+                <CardHeader className="flex flex-col gap-4">
                   <div>
                     <CardTitle>Optimization runs</CardTitle>
                     <CardDescription>
                       ContextAPI traffic grouped by workload and model tier.
                     </CardDescription>
                   </div>
-                  <CardAction className="flex w-full flex-col gap-2 sm:flex-row">
-                    <div className="relative w-full">
+                  <div className="flex w-full flex-col gap-3">
+                    {/* Row 2: Search input */}
+                    <div className="relative w-full max-w-md">
                       <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
                       <Input
                         className="h-9 rounded-sm pl-9"
@@ -652,29 +653,32 @@ export default function ContextApiPage() {
                         onChange={(event) => setSearch(event.target.value)}
                       />
                     </div>
-                    <Select value={tierFilter} onValueChange={setTierFilter}>
-                      <SelectTrigger className="h-9 w-full rounded-sm sm:w-40">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="rounded-sm">
-                        <SelectItem className="rounded-sm" value="all">
-                          All tiers
-                        </SelectItem>
-                        <SelectItem className="rounded-sm" value="cosavu-small">
-                          Small
-                        </SelectItem>
-                        <SelectItem
-                          className="rounded-sm"
-                          value="cosavu-medium"
-                        >
-                          Medium
-                        </SelectItem>
-                        <SelectItem className="rounded-sm" value="cosavu-large">
-                          Large
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </CardAction>
+                    {/* Row 3: Select dropdown */}
+                    <div className="w-full max-w-xs">
+                      <Select value={tierFilter} onValueChange={setTierFilter}>
+                        <SelectTrigger className="h-9 w-full rounded-sm sm:w-40">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-sm">
+                          <SelectItem className="rounded-sm" value="all">
+                            All tiers
+                          </SelectItem>
+                          <SelectItem className="rounded-sm" value="cosavu-small">
+                            Small
+                          </SelectItem>
+                          <SelectItem
+                            className="rounded-sm"
+                            value="cosavu-medium"
+                          >
+                            Medium
+                          </SelectItem>
+                          <SelectItem className="rounded-sm" value="cosavu-large">
+                            Large
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
@@ -976,7 +980,7 @@ export default function ContextApiPage() {
             </div>
 
             <Card className="rounded-sm border-border/60 shadow-sm">
-              <CardHeader className="gap-4 lg:grid-cols-[1fr_auto]">
+              <CardHeader className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-start">
                 <div>
                   <CardTitle>ContextAPI ledger</CardTitle>
                   <CardDescription>

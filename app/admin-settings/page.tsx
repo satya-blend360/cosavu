@@ -391,7 +391,7 @@ export default function AdminSettingsPage() {
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
             <Card className="rounded-sm border-border/60 shadow-sm">
-              <CardHeader className="gap-4 md:grid-cols-[1fr_auto]">
+              <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
                     <Badge className="w-fit rounded-sm" variant="secondary">
@@ -989,7 +989,7 @@ export default function AdminSettingsPage() {
 
             {activeTab === "alerts" && (
               <Card className="rounded-sm border-border/60 shadow-sm">
-                <CardHeader className="gap-4 lg:grid-cols-[1fr_auto]">
+                <CardHeader className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-start">
                   <div>
                     <CardTitle>Notification routing</CardTitle>
                     <CardDescription>

@@ -533,7 +533,7 @@ export default function SystemLogsPage() {
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
             <Card className="rounded-sm border-border/60 shadow-sm">
-              <CardHeader className="gap-4 md:grid-cols-[1fr_auto]">
+              <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
                     <Badge className="w-fit rounded-sm" variant="secondary">
@@ -656,24 +656,27 @@ export default function SystemLogsPage() {
 
             <div className="grid gap-4 xl:grid-cols-[1.25fr_0.75fr]">
               <Card className="rounded-sm border-border/60 shadow-sm">
-                <CardHeader className="gap-4 lg:grid-cols-[1fr_auto]">
+                <CardHeader className="flex flex-col gap-4">
                   <div>
                     <CardTitle>Log stream</CardTitle>
                     <CardDescription>
                       Filter by severity, source, time window, or request text.
                     </CardDescription>
                   </div>
-                  <CardAction className="col-span-full col-start-1 row-start-2 flex w-full flex-col gap-2 justify-self-stretch lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:w-auto lg:justify-self-end">
-                    <div className="flex w-full flex-col gap-2 sm:flex-row">
-                      <div className="relative w-full sm:w-72">
-                        <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
-                        <Input
-                          className="h-9 rounded-sm pl-9"
-                          placeholder="Search logs..."
-                          value={query}
-                          onChange={(event) => setQuery(event.target.value)}
-                        />
-                      </div>
+                  <div className="flex w-full flex-col gap-3">
+                    {/* Row 2: Search queries */}
+                    <div className="relative w-full max-w-md">
+                      <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+                      <Input
+                        className="h-9 rounded-sm pl-9"
+                        placeholder="Search logs..."
+                        value={query}
+                        onChange={(event) => setQuery(event.target.value)}
+                      />
+                    </div>
+
+                    {/* Row 3: Select filters */}
+                    <div className="flex flex-wrap gap-2">
                       <Select
                         value={sourceFilter}
                         onValueChange={setSourceFilter}
@@ -710,32 +713,36 @@ export default function SystemLogsPage() {
                         </SelectContent>
                       </Select>
                     </div>
-                    <Tabs
-                      value={effectiveLevelFilter}
-                      onValueChange={setLevelFilter}
-                      className="w-full"
-                    >
-                      <TabsList className="w-full rounded-sm [&_[data-slot=tabs-trigger]]:rounded-sm">
-                        <TabsTrigger className="rounded-sm" value="all">
-                          All
-                        </TabsTrigger>
-                        {!demoStatsActive && (
-                          <TabsTrigger className="rounded-sm" value="error">
-                            Error
+
+                    {/* Row 4: Tabs filter */}
+                    <div className="w-full max-w-md">
+                      <Tabs
+                        value={effectiveLevelFilter}
+                        onValueChange={setLevelFilter}
+                        className="w-full"
+                      >
+                        <TabsList className="w-full rounded-sm [&_[data-slot=tabs-trigger]]:rounded-sm">
+                          <TabsTrigger className="rounded-sm" value="all">
+                            All
                           </TabsTrigger>
-                        )}
-                        <TabsTrigger className="rounded-sm" value="warning">
-                          Warn
-                        </TabsTrigger>
-                        <TabsTrigger className="rounded-sm" value="info">
-                          Info
-                        </TabsTrigger>
-                        <TabsTrigger className="rounded-sm" value="debug">
-                          Debug
-                        </TabsTrigger>
-                      </TabsList>
-                    </Tabs>
-                  </CardAction>
+                          {!demoStatsActive && (
+                            <TabsTrigger className="rounded-sm" value="error">
+                              Error
+                            </TabsTrigger>
+                          )}
+                          <TabsTrigger className="rounded-sm" value="warning">
+                            Warn
+                          </TabsTrigger>
+                          <TabsTrigger className="rounded-sm" value="info">
+                            Info
+                          </TabsTrigger>
+                          <TabsTrigger className="rounded-sm" value="debug">
+                            Debug
+                          </TabsTrigger>
+                        </TabsList>
+                      </Tabs>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">

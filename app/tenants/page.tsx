@@ -666,7 +666,7 @@ export default function TenantsPage() {
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
             <Card className="rounded-sm border-border/60 shadow-sm">
-              <CardHeader className="gap-4 md:grid-cols-[1fr_auto]">
+              <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
                     <Badge className="w-fit rounded-sm" variant="secondary">
@@ -767,7 +767,7 @@ export default function TenantsPage() {
 
             <div className="grid gap-4 xl:grid-cols-[1.25fr_0.75fr]">
               <Card className="rounded-sm border-border/60 shadow-sm">
-                <CardHeader className="gap-4 lg:grid-cols-[1fr_auto]">
+                <CardHeader className="flex flex-col gap-4">
                   <div>
                     <CardTitle>Tenant registry</CardTitle>
                     <CardDescription>
@@ -775,8 +775,9 @@ export default function TenantsPage() {
                       DataAPI v2 auth layer.
                     </CardDescription>
                   </div>
-                  <CardAction className="col-span-full col-start-1 row-start-2 flex w-full flex-col gap-2 justify-self-stretch sm:flex-row lg:col-span-1 lg:col-start-2 lg:row-start-1 lg:w-auto lg:justify-self-end">
-                    <div className="relative w-full sm:w-72">
+                  <div className="flex w-full flex-col gap-3">
+                    {/* Row 2: Search input */}
+                    <div className="relative w-full max-w-md">
                       <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
                       <Input
                         className="h-9 pl-9"
@@ -785,19 +786,22 @@ export default function TenantsPage() {
                         onChange={(event) => setSearchQuery(event.target.value)}
                       />
                     </div>
-                    <Tabs
-                      value={modeFilter}
-                      onValueChange={setModeFilter}
-                      className="w-full sm:w-auto"
-                    >
-                      <TabsList className="w-full sm:w-fit">
-                        <TabsTrigger value="all">All</TabsTrigger>
-                        <TabsTrigger value="hybrid">Hybrid</TabsTrigger>
-                        <TabsTrigger value="warehouse">Warehouse</TabsTrigger>
-                        <TabsTrigger value="upload-api">Upload</TabsTrigger>
-                      </TabsList>
-                    </Tabs>
-                  </CardAction>
+                    {/* Row 3: Tabs filter */}
+                    <div className="w-full max-w-sm">
+                      <Tabs
+                        value={modeFilter}
+                        onValueChange={setModeFilter}
+                        className="w-full"
+                      >
+                        <TabsList className="w-full">
+                          <TabsTrigger className="w-full" value="all">All</TabsTrigger>
+                          <TabsTrigger className="w-full" value="hybrid">Hybrid</TabsTrigger>
+                          <TabsTrigger className="w-full" value="warehouse">Warehouse</TabsTrigger>
+                          <TabsTrigger className="w-full" value="upload-api">Upload</TabsTrigger>
+                        </TabsList>
+                      </Tabs>
+                    </div>
+                  </div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
