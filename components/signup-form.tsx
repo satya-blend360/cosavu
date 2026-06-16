@@ -12,10 +12,10 @@ import {
   FieldLabel,
   FieldSeparator,
 } from "@/components/ui/field"
-import { signInWithPopup } from "firebase/auth"
+import { signInWithPopup, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { auth, googleProvider } from "@/lib/firebase"
 import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState, type FormEvent } from "react"
 import { watchConsoleAuth } from "@/lib/console-auth"
 
 export function SignupForm({
@@ -23,6 +23,12 @@ export function SignupForm({
   ...props
 }: React.ComponentProps<"div">) {
   const router = useRouter()
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     const unsubscribe = watchConsoleAuth((user) => {
@@ -42,11 +48,33 @@ export function SignupForm({
     }
   }
 
+  const handleEmailSignup = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setSubmitting(true)
+    setErrorMessage(null)
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      if (userCredential.user) {
+        await updateProfile(userCredential.user, {
+          displayName: `${firstName} ${lastName}`.trim(),
+        })
+      }
+      router.push("/")
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Unable to create account."
+      setErrorMessage(message)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleEmailSignup}>
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
                 <h1 className="text-2xl font-bold">Create an account</h1>
@@ -60,13 +88,25 @@ export function SignupForm({
                     <FieldLabel htmlFor="firstName" className="mb-2 block">
                       First name
                     </FieldLabel>
-                    <Input id="firstName" placeholder="Jane" required />
+                    <Input
+                      id="firstName"
+                      placeholder="Jane"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                    />
                   </div>
                   <div>
                     <FieldLabel htmlFor="lastName" className="mb-2 block">
                       Last name
                     </FieldLabel>
-                    <Input id="lastName" placeholder="Doe" required />
+                    <Input
+                      id="lastName"
+                      placeholder="Doe"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                    />
                   </div>
                 </div>
               </Field>
@@ -76,20 +116,33 @@ export function SignupForm({
                   id="email"
                   type="email"
                   placeholder="m@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </Field>
               <Field>
                 <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </Field>
+              {errorMessage && (
+                <FieldDescription className="text-destructive">
+                  {errorMessage}
+                </FieldDescription>
+              )}
               <Field>
                 <Button
-                  type="button"
-                  onClick={() => router.push("/")}
+                  type="submit"
+                  disabled={submitting}
                   className="w-full"
                 >
-                  Sign Up
+                  {submitting ? "Creating account..." : "Sign Up"}
                 </Button>
               </Field>
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">

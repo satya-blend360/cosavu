@@ -12,7 +12,7 @@ import {
   FieldLabel,
   FieldSeparator,
 } from "@/components/ui/field"
-import { signInWithPopup } from "firebase/auth"
+import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth"
 import { auth, googleProvider } from "@/lib/firebase"
 import { useRouter } from "next/navigation"
 import { useEffect, useState, type FormEvent } from "react"
@@ -52,12 +52,21 @@ export function LoginForm({
     setErrorMessage(null)
 
     try {
-      await signInWithConsolePassword(email, password)
+      // First try to authenticate using Firebase email/password
+      await signInWithEmailAndPassword(auth, email, password)
       router.push("/")
-    } catch (error: unknown) {
-      const message =
-        error instanceof Error ? error.message : "Unable to sign in."
-      setErrorMessage(message)
+    } catch (firebaseError: unknown) {
+      // If Firebase auth fails, fall back to custom domain credentials
+      try {
+        await signInWithConsolePassword(email, password)
+        router.push("/")
+      } catch (consoleError: unknown) {
+        const message =
+          firebaseError instanceof Error
+            ? firebaseError.message
+            : "Invalid email or password."
+        setErrorMessage(message)
+      }
     } finally {
       setSubmitting(false)
     }
