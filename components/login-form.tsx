@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { Globe } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -83,6 +84,16 @@ export function LoginForm({
                 <p className="text-balance text-muted-foreground">
                   Login to your Cosavu account
                 </p>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  size="sm" 
+                  className="mt-2 text-indigo-500 hover:text-indigo-600 border-indigo-500/20 hover:bg-indigo-500/5 rounded-3xl gap-1.5"
+                  onClick={() => router.push("/")}
+                >
+                  <Globe className="size-3.5" />
+                  Go to Landing Page
+                </Button>
               </div>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
