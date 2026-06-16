@@ -308,11 +308,15 @@ export default function AdminSettingsPage() {
   if (loading) {
     return (
       <SidebarProvider defaultOpen>
-        <div className="flex min-h-screen w-full bg-background text-foreground">
+        <div className="flex min-h-screen w-full bg-[#030307] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-y-auto relative">
+        {/* CSS Background Grid & Glows */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c16_1px,transparent_1px),linear-gradient(to_bottom,#0c0c16_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/10 blur-[120px] pointer-events-none" />
           <AppSidebar />
           <SidebarInset className="flex h-screen w-full flex-col overflow-y-auto shadow-none">
             <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background px-4">
-              <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground" />
+              <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
               <Skeleton className="h-4 w-60" />
               <Skeleton className="ml-auto size-8 rounded-full" />
             </header>
@@ -331,11 +335,15 @@ export default function AdminSettingsPage() {
 
   return (
     <SidebarProvider defaultOpen>
-      <div className="flex min-h-screen w-full bg-background text-foreground">
+      <div className="flex min-h-screen w-full bg-[#030307] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-y-auto relative">
+        {/* CSS Background Grid & Glows */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c16_1px,transparent_1px),linear-gradient(to_bottom,#0c0c16_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/10 blur-[120px] pointer-events-none" />
         <AppSidebar />
-        <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto shadow-none">
-          <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background/60 px-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/45">
-            <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground" />
+        <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto bg-transparent shadow-none">
+          <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 border-b border-white/5 bg-[#030307]/75 px-4 backdrop-blur-md">
+            <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>System administration</BreadcrumbItem>
@@ -390,7 +398,7 @@ export default function AdminSettingsPage() {
           </header>
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
-            <Card className="rounded-sm border-border/60 shadow-sm">
+            <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
               <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
@@ -511,7 +519,7 @@ export default function AdminSettingsPage() {
             </Tabs>
 
             {activeTab === "workspace" && (
-              <Card className="rounded-sm border-border/60 shadow-sm">
+              <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader>
                   <CardTitle>Workspace profile</CardTitle>
                   <CardDescription>
@@ -651,7 +659,7 @@ export default function AdminSettingsPage() {
             )}
 
             {activeTab === "security" && (
-              <Card className="rounded-sm border-border/60 shadow-sm">
+              <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader>
                   <CardTitle>Security posture</CardTitle>
                   <CardDescription>
@@ -766,7 +774,7 @@ export default function AdminSettingsPage() {
 
             {activeTab === "data" && (
               <div className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
-                <Card className="rounded-sm border-border/60 shadow-sm">
+                <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
                   <CardHeader>
                     <CardTitle>Data plane defaults</CardTitle>
                     <CardDescription>
@@ -867,7 +875,7 @@ export default function AdminSettingsPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="rounded-sm border-border/60 shadow-sm">
+                <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
                   <CardHeader>
                     <CardTitle>Retrieval limits</CardTitle>
                     <CardDescription>
@@ -988,7 +996,7 @@ export default function AdminSettingsPage() {
             )}
 
             {activeTab === "alerts" && (
-              <Card className="rounded-sm border-border/60 shadow-sm">
+              <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-start">
                   <div>
                     <CardTitle>Notification routing</CardTitle>

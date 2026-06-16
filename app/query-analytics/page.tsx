@@ -548,11 +548,15 @@ export default function QueryAnalyticsPage() {
   if (loading) {
     return (
       <SidebarProvider defaultOpen>
-        <div className="flex min-h-screen w-full bg-background text-foreground">
+        <div className="flex min-h-screen w-full bg-[#030307] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-y-auto relative">
+        {/* CSS Background Grid & Glows */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c16_1px,transparent_1px),linear-gradient(to_bottom,#0c0c16_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/10 blur-[120px] pointer-events-none" />
           <AppSidebar />
           <SidebarInset className="flex h-screen w-full flex-col overflow-y-auto shadow-none">
             <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background px-4">
-              <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground" />
+              <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
               <Skeleton className="h-4 w-56" />
               <Skeleton className="ml-auto size-8 rounded-full" />
             </header>
@@ -571,11 +575,15 @@ export default function QueryAnalyticsPage() {
 
   return (
     <SidebarProvider defaultOpen>
-      <div className="flex min-h-screen w-full bg-background text-foreground">
+      <div className="flex min-h-screen w-full bg-[#030307] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-y-auto relative">
+        {/* CSS Background Grid & Glows */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c16_1px,transparent_1px),linear-gradient(to_bottom,#0c0c16_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/10 blur-[120px] pointer-events-none" />
         <AppSidebar />
-        <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto shadow-none">
-          <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background/60 px-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/45">
-            <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground" />
+        <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto bg-transparent shadow-none">
+          <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 border-b border-white/5 bg-[#030307]/75 px-4 backdrop-blur-md">
+            <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>Observability</BreadcrumbItem>
@@ -630,7 +638,7 @@ export default function QueryAnalyticsPage() {
           </header>
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
-            <Card className="rounded-sm border-border/60 shadow-sm">
+            <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
               <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <Badge className="w-fit rounded-sm" variant="secondary">
@@ -722,7 +730,7 @@ export default function QueryAnalyticsPage() {
             </Card>
 
             <div className="grid gap-4 xl:grid-cols-[1.25fr_0.75fr]">
-              <Card className="rounded-sm border-border/60 shadow-sm">
+              <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader className="flex flex-col gap-4">
                   <div>
                     <CardTitle>Query stream</CardTitle>
@@ -735,7 +743,7 @@ export default function QueryAnalyticsPage() {
                     <div className="relative w-full max-w-md">
                       <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
                       <Input
-                        className="h-9 rounded-sm pl-9"
+                        className="h-9 rounded-md pl-9 bg-transparent border-white/5 hover:border-white/10 text-slate-200 placeholder-slate-500 focus-visible:ring-indigo-500/30"
                         placeholder="Search queries..."
                         value={querySearch}
                         onChange={(event) =>
@@ -750,7 +758,7 @@ export default function QueryAnalyticsPage() {
                         value={collectionFilter}
                         onValueChange={setCollectionFilter}
                       >
-                        <SelectTrigger className="h-9 w-full rounded-sm sm:w-48">
+                        <SelectTrigger className="h-9 w-full rounded-md sm:w-48 bg-transparent border-white/5 hover:border-white/10 text-slate-300 focus:ring-0">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="rounded-sm">
@@ -769,7 +777,7 @@ export default function QueryAnalyticsPage() {
                         </SelectContent>
                       </Select>
                       <Select value={timeFilter} onValueChange={setTimeFilter}>
-                        <SelectTrigger className="h-9 w-full rounded-sm sm:w-44">
+                        <SelectTrigger className="h-9 w-full rounded-md sm:w-44 bg-transparent border-white/5 hover:border-white/10 text-slate-300 focus:ring-0">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="rounded-sm">
@@ -793,14 +801,14 @@ export default function QueryAnalyticsPage() {
                         onValueChange={setSystemFilter}
                         className="w-full"
                       >
-                        <TabsList className="w-full rounded-sm [&_[data-slot=tabs-trigger]]:rounded-sm">
-                          <TabsTrigger className="rounded-sm" value="all">
+                        <TabsList className="w-full rounded-md bg-white/5 border border-white/5 p-1 text-slate-400">
+                          <TabsTrigger className="w-full rounded-md text-xs data-[state=active]:bg-indigo-500/10 data-[state=active]:text-indigo-400 data-[state=active]:border-white/5 transition-all" value="all">
                             All
                           </TabsTrigger>
-                          <TabsTrigger className="rounded-sm" value="car-0">
+                          <TabsTrigger className="w-full rounded-md text-xs data-[state=active]:bg-indigo-500/10 data-[state=active]:text-indigo-400 data-[state=active]:border-white/5 transition-all" value="car-0">
                             CAR-0
                           </TabsTrigger>
-                          <TabsTrigger className="rounded-sm" value="car-1">
+                          <TabsTrigger className="w-full rounded-md text-xs data-[state=active]:bg-indigo-500/10 data-[state=active]:text-indigo-400 data-[state=active]:border-white/5 transition-all" value="car-1">
                             CAR-1
                           </TabsTrigger>
                         </TabsList>
@@ -825,8 +833,8 @@ export default function QueryAnalyticsPage() {
                           <button
                             key={event.id}
                             type="button"
-                            className={`w-full rounded-sm bg-muted/20 p-4 text-left transition-colors hover:bg-muted/35 ${
-                              isSelected ? "ring-2 ring-primary/40" : ""
+                            className={`w-full rounded-md border border-white/5 bg-slate-950/25 p-4 text-left transition-all hover:bg-white/5 hover:border-white/10 ${
+                              isSelected ? "ring-1 ring-indigo-500/50 bg-indigo-500/5" : ""
                             }`}
                             onClick={() => setSelectedEventId(event.id)}
                           >
@@ -908,7 +916,7 @@ export default function QueryAnalyticsPage() {
               </Card>
 
               <div className="space-y-4">
-                <Card className="rounded-sm border-border/60 shadow-sm">
+                <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
                   <CardHeader>
                     <CardTitle>Selected query</CardTitle>
                     <CardDescription>
@@ -1091,7 +1099,7 @@ export default function QueryAnalyticsPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="rounded-sm border-border/60 shadow-sm">
+                <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
                   <CardHeader>
                     <CardTitle>System mix</CardTitle>
                     <CardDescription>
@@ -1125,7 +1133,7 @@ export default function QueryAnalyticsPage() {
               </div>
             </div>
 
-            <Card className="rounded-sm border-border/60 shadow-sm">
+            <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
               <CardHeader className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-start">
                 <div>
                   <CardTitle>Top collections</CardTitle>

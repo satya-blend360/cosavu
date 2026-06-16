@@ -97,9 +97,9 @@ export default function ApiKeysPage() {
     <SidebarProvider defaultOpen>
       <div className="flex min-h-screen w-full bg-background tracking-tight text-foreground">
         <AppSidebar />
-        <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto shadow-none">
+        <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto bg-transparent shadow-none">
           <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background px-4">
-            <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground" />
+            <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
             <div className="mx-2 h-4 w-px bg-border" />
             <h1 className="text-sm font-medium text-muted-foreground">
               System Administration / API Keys

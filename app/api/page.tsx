@@ -445,11 +445,15 @@ export default function ApiPage() {
   if (loading && keys.length === 0) {
     return (
       <SidebarProvider defaultOpen>
-        <div className="flex min-h-screen w-full bg-background text-foreground">
+        <div className="flex min-h-screen w-full bg-[#030307] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-y-auto relative">
+        {/* CSS Background Grid & Glows */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c16_1px,transparent_1px),linear-gradient(to_bottom,#0c0c16_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/10 blur-[120px] pointer-events-none" />
           <AppSidebar />
           <SidebarInset className="flex h-screen w-full flex-col overflow-y-auto shadow-none">
             <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background px-4">
-              <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground" />
+              <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
               <Skeleton className="h-4 w-56" />
               <Skeleton className="ml-auto size-8 rounded-2xl" />
             </header>
@@ -469,11 +473,15 @@ export default function ApiPage() {
 
   return (
     <SidebarProvider defaultOpen>
-      <div className="flex min-h-screen w-full bg-background text-foreground">
+      <div className="flex min-h-screen w-full bg-[#030307] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-y-auto relative">
+        {/* CSS Background Grid & Glows */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c16_1px,transparent_1px),linear-gradient(to_bottom,#0c0c16_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/10 blur-[120px] pointer-events-none" />
         <AppSidebar />
-        <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto shadow-none">
-          <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background/60 px-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/45">
-            <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground" />
+        <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto bg-transparent shadow-none">
+          <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 border-b border-white/5 bg-[#030307]/75 px-4 backdrop-blur-md">
+            <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>System administration</BreadcrumbItem>
@@ -528,7 +536,7 @@ export default function ApiPage() {
           </header>
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
-            <Card className="rounded-sm border-border/60 shadow-sm">
+            <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
               <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <Badge
@@ -611,7 +619,7 @@ export default function ApiPage() {
             </Card>
 
             {errorMessage && (
-              <Card className="rounded-sm border-destructive/30 bg-destructive/5 shadow-sm">
+              <Card className="border border-rose-500/20 bg-rose-500/5 backdrop-blur-md rounded-md shadow-md">
                 <CardContent className="flex items-center justify-between gap-4">
                   <p className="text-sm text-destructive">{errorMessage}</p>
                   <Button
@@ -628,7 +636,7 @@ export default function ApiPage() {
             )}
 
             {newKey && (
-              <Card className="rounded-sm border-emerald-500/25 bg-emerald-500/5 shadow-sm">
+              <Card className="border border-emerald-500/20 bg-emerald-500/5 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader>
                   <div className="flex items-start gap-3">
                     <div className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
@@ -673,7 +681,7 @@ export default function ApiPage() {
               </Card>
             )}
 
-            <Card className="rounded-sm border-border/60 shadow-sm">
+            <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
               <CardHeader>
                 <CardTitle>Primary integration key</CardTitle>
                 <CardDescription>
@@ -775,7 +783,7 @@ export default function ApiPage() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-sm border-border/60 shadow-sm">
+            <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
               <CardHeader className="flex flex-col gap-4">
                 <div>
                   <CardTitle>Issued tokens</CardTitle>
@@ -802,13 +810,13 @@ export default function ApiPage() {
                       className="w-full"
                     >
                       <TabsList className="w-full rounded-2xl">
-                        <TabsTrigger className="w-full rounded-2xl" value="all">
+                        <TabsTrigger className="w-full rounded-md text-xs data-[state=active]:bg-indigo-500/10 data-[state=active]:text-indigo-400 data-[state=active]:border-white/5 transition-all" value="all">
                           All
                         </TabsTrigger>
-                        <TabsTrigger className="w-full rounded-2xl" value="production">
+                        <TabsTrigger className="w-full rounded-md text-xs data-[state=active]:bg-indigo-500/10 data-[state=active]:text-indigo-400 data-[state=active]:border-white/5 transition-all" value="production">
                           Prod
                         </TabsTrigger>
-                        <TabsTrigger className="w-full rounded-2xl" value="integration">
+                        <TabsTrigger className="w-full rounded-md text-xs data-[state=active]:bg-indigo-500/10 data-[state=active]:text-indigo-400 data-[state=active]:border-white/5 transition-all" value="integration">
                           Dev
                         </TabsTrigger>
                       </TabsList>
