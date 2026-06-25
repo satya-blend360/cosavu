@@ -585,15 +585,15 @@ export default function TenantsPage() {
   if (loading) {
     return (
       <SidebarProvider defaultOpen>
-        <div className="flex min-h-screen w-full bg-[#030307] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-y-auto relative">
+        <div className="flex h-screen w-full bg-background text-foreground font-sans selection:bg-indigo-500/30 overflow-hidden relative">
         {/* CSS Background Grid & Glows */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c16_1px,transparent_1px),linear-gradient(to_bottom,#0c0c16_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
-        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
-        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/10 blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full dark:bg-indigo-900/10 bg-indigo-500/5 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full dark:bg-purple-900/10 bg-purple-500/5 blur-[120px] pointer-events-none" />
           <AppSidebar />
           <SidebarInset className="flex h-screen w-full flex-col overflow-y-auto shadow-none">
             <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background px-4">
-              <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
+              <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground hover:bg-accent/40" />
               <Skeleton className="h-4 w-56" />
               <Skeleton className="ml-auto size-8 rounded-full" />
             </header>
@@ -612,15 +612,15 @@ export default function TenantsPage() {
 
   return (
     <SidebarProvider defaultOpen>
-      <div className="flex min-h-screen w-full bg-[#030307] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-y-auto relative">
+      <div className="flex h-screen w-full bg-background text-foreground font-sans selection:bg-indigo-500/30 overflow-hidden relative">
         {/* CSS Background Grid & Glows */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0c0c16_1px,transparent_1px),linear-gradient(to_bottom,#0c0c16_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
-        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
-        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full bg-purple-900/10 blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full dark:bg-indigo-900/10 bg-indigo-500/5 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[30%] right-[-10%] h-[500px] w-[500px] rounded-full dark:bg-purple-900/10 bg-purple-500/5 blur-[120px] pointer-events-none" />
         <AppSidebar />
         <SidebarInset className="relative flex h-screen w-full flex-col overflow-y-auto bg-transparent shadow-none">
-          <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 border-b border-white/5 bg-[#030307]/75 px-4 backdrop-blur-md">
-            <SidebarTrigger className="-ml-2 text-slate-400 hover:text-white hover:bg-white/5" />
+          <header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 border-b border-border/40 bg-background/75 px-4 backdrop-blur-md">
+            <SidebarTrigger className="-ml-2 text-muted-foreground hover:text-foreground hover:bg-accent/40" />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>System administration</BreadcrumbItem>
@@ -673,7 +673,7 @@ export default function TenantsPage() {
           </header>
 
           <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 p-4 lg:p-6">
-            <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
+            <Card className="border border-border/40 bg-card/40 backdrop-blur-md rounded-md shadow-md">
               <CardHeader className="grid gap-4 md:grid-cols-[1fr_auto] md:items-start">
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
@@ -774,7 +774,7 @@ export default function TenantsPage() {
             )}
 
             <div className="grid gap-4 xl:grid-cols-[1.25fr_0.75fr]">
-              <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
+              <Card className="border border-border/40 bg-card/40 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader className="flex flex-col gap-4">
                   <div>
                     <CardTitle>Tenant registry</CardTitle>
@@ -821,7 +821,7 @@ export default function TenantsPage() {
                           <button
                             key={tenant.id}
                             type="button"
-                            className={`w-full rounded-md border border-white/5 bg-slate-950/25 p-4 text-left transition-all hover:bg-white/5 hover:border-white/10 ${
+                            className={`w-full rounded-md border border-border/40 bg-card/25 p-4 text-left transition-all hover:bg-accent/40 hover:border-border/60 ${
                               isSelected ? "ring-1 ring-indigo-500/50 bg-indigo-500/5" : ""
                             }`}
                             onClick={() => setSelectedTenantId(tenant.id)}
@@ -900,7 +900,7 @@ export default function TenantsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
+              <Card className="border border-border/40 bg-card/40 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader>
                   <CardTitle>Selected tenant</CardTitle>
                   <CardDescription>
@@ -1036,7 +1036,7 @@ export default function TenantsPage() {
             </div>
 
             <div className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
-              <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
+              <Card className="border border-border/40 bg-card/40 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader>
                   <CardTitle>Data plane</CardTitle>
                   <CardDescription>
@@ -1078,7 +1078,7 @@ export default function TenantsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border border-white/5 bg-slate-950/40 backdrop-blur-md rounded-md shadow-md">
+              <Card className="border border-border/40 bg-card/40 backdrop-blur-md rounded-md shadow-md">
                 <CardHeader>
                   <CardTitle>Tenant API contract</CardTitle>
                   <CardDescription>
